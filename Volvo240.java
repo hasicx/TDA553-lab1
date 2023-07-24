@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Volvo240 extends Car{
+public class Volvo240 extends TrimmedCar {
 
     public final static double trimFactor = 1.25;
 
@@ -10,17 +10,11 @@ public class Volvo240 extends Car{
 
     @Override
     protected double speedFactor(){
-        return super.speedFactor() * trimFactor;
+        return scaleEnginePower() * trimFactor;
     }
 
-    @Override
-    protected void incrementSpeed(double amount){
-	    currentSpeed = Math.min(integrateAcceleration(amount), getEnginePower());
-    }
-
-    @Override
-    public void decrementSpeed(double amount){
-        currentSpeed = Math.max(integrateDeceleration(amount), 0);
+    protected void incrementSpeed(double amount) {
+        currentSpeed = integrateAcceleration(amount);
     }
 
 }

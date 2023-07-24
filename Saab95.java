@@ -1,35 +1,18 @@
 import java.awt.*;
 
-public class Saab95 extends Car {
+public class Saab95 extends TurboCar {
 
-    public boolean turboOn;
+    private static final double BOOST_VALUE_TURBO_OFF = 1.0;
+    private static final double BOOST_VALUE_TURBO_ON = 1.3;
 
     public Saab95() {
         super(2, 125, Color.red, "Saab95");
     }
 
-
-    public void setTurboOn(){
-	    turboOn = true;
-    }
-
-    public void setTurboOff(){
-	    turboOn = false;
-    }
-    
     @Override
     protected double speedFactor(){
-        return super.speedFactor() * (turboOn ? 1.3 : 1);
-    }
-
-    @Override
-    protected void incrementSpeed(double amount){
-        currentSpeed = integrateAcceleration(amount);
-    }
-
-    @Override
-    protected void decrementSpeed(double amount){
-        currentSpeed = integrateDeceleration(amount);
+        double turboBoost = getTurboOn() ? BOOST_VALUE_TURBO_ON : BOOST_VALUE_TURBO_OFF;
+        return scaleEnginePower() * turboBoost;
     }
 
 }

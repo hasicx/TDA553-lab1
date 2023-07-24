@@ -2,6 +2,8 @@ import java.awt.Color;
 
 public abstract class Car {
 
+    private static final double ENGINE_POWER_RESCALE_AMOUNT = 0.01;
+
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private Color color; // Color of the car
@@ -44,9 +46,11 @@ public abstract class Car {
 	    currentSpeed = 0;
     }
 
-    protected double speedFactor() {
-        return enginePower * 0.01;
+    protected double scaleEnginePower() {
+        return enginePower * ENGINE_POWER_RESCALE_AMOUNT;
     }
+
+    protected abstract double speedFactor();
 
     protected double integrateAcceleration(double amount) {
         return getCurrentSpeed() + speedFactor() * amount;
