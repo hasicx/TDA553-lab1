@@ -10,11 +10,7 @@ public class Volvo240 extends TrimmedCar {
 
     @Override
     protected double speedFactor(){
-        return scaleEnginePower() * trimFactor;
-    }
-
-    protected void incrementSpeed(double amount) {
-        currentSpeed = integrateAcceleration(amount);
+        return baseSpeedFactor() * trimFactor;
     }
 
 }

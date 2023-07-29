@@ -12,7 +12,7 @@ public class Saab95 extends TurboCar {
     @Override
     protected double speedFactor(){
         double turboBoost = getTurboOn() ? BOOST_VALUE_TURBO_ON : BOOST_VALUE_TURBO_OFF;
-        return scaleEnginePower() * turboBoost;
+        return baseSpeedFactor() * turboBoost;
     }
 
 }
