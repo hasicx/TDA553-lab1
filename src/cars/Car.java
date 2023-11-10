@@ -84,6 +84,7 @@ public abstract class Car implements Movable {
         return getCurrentSpeed() - speedFactor() * amount;
     }
 
+    // todo fix
     protected abstract void incrementSpeed(double amount);
 
     protected void decrementSpeed(double amount) {
