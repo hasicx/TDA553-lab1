@@ -1,3 +1,5 @@
+package cars;
+
 import java.awt.Color;
 import java.awt.geom.Point2D;
 
@@ -24,6 +26,8 @@ public abstract class Car implements Movable {
         this.modelName = modelName;
         this.position = new Point2D.Double();
         this.direction = Direction.NORTH;
+
+        startEngine();
     }
 
     public int getNrDoors(){
@@ -82,15 +86,25 @@ public abstract class Car implements Movable {
 
     protected abstract void incrementSpeed(double amount);
 
-    protected abstract void decrementSpeed(double amount);
+    protected void decrementSpeed(double amount) {
+        currentSpeed = Math.max(integrateDeceleration(amount), 0);
+    }
+
+    private void checkAmountArg(double amount) {
+        if (amount < 0 || amount > 1) {
+            throw new IllegalArgumentException("amount must be between 0 and 1.");
+        }
+    }
 
     // TODO fix this method according to lab pm
     public void gas(double amount){
+        checkAmountArg(amount);
         incrementSpeed(amount);
     }
 
     // TODO fix this method according to lab pm
     public void brake(double amount){
+        checkAmountArg(amount);
         decrementSpeed(amount);
     }
 

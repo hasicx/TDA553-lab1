@@ -1,3 +1,5 @@
+package cars;
+
 import java.awt.Color;
 
 public abstract class TurboCar extends Car {
@@ -26,11 +28,6 @@ public abstract class TurboCar extends Car {
     @Override
     protected void incrementSpeed(double amount){
         currentSpeed = integrateAcceleration(amount);
-    }
-
-    @Override
-    protected void decrementSpeed(double amount){
-        currentSpeed = integrateDeceleration(amount);
     }
 
 }

@@ -1,3 +1,5 @@
+package cars;
+
 public enum Direction {
     NORTH {
         public Direction rotateClockwise() {return EAST;};

@@ -1,3 +1,5 @@
+package cars;
+
 import java.awt.*;
 
 public abstract class TrimmedCar extends Car {

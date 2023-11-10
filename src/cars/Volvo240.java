@@ -1,3 +1,5 @@
+package cars;
+
 import java.awt.*;
 
 public class Volvo240 extends TrimmedCar {
