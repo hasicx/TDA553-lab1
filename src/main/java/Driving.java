@@ -36,13 +36,13 @@ public class Driving {
         System.out.println(saab.getCurrentSpeed());
 
         System.out.printf("saab enginepower: %.3f\n", saab.getEnginePower());
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             saab.gas(1);
             System.out.printf("saab speed: %.2f\n", saab.getCurrentSpeed());
 
         }
 
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 5; i++) {
             saab.brake(1);
             System.out.printf("saab speed: %.2f\n", saab.getCurrentSpeed());
         }
