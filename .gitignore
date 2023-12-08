@@ -1,1 +1,5 @@
 lib/*
+
+# Gradle
+.gradle
+build/
