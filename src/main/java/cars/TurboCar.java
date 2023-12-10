@@ -24,9 +24,4 @@ public abstract class TurboCar extends Car {
 
   @Override
   protected abstract double speedFactor();
-
-  @Override
-  protected void incrementSpeed(double amount) {
-    currentSpeed = integrateAcceleration(amount);
-  }
 }

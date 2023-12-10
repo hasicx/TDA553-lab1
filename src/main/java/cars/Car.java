@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 
 public abstract class Car implements Movable {
 
+  private static final int MIN_VELOCITY = 0;
   private static final double TIME_INTERVAL_LENGTH = 0.5;
   private static final double ENGINE_POWER_RESCALE_AMOUNT = 0.01;
 
@@ -84,11 +85,13 @@ public abstract class Car implements Movable {
     return getCurrentSpeed() - speedFactor() * amount;
   }
 
-  // todo fix
-  protected abstract void incrementSpeed(double amount);
+  protected void incrementSpeed(double amount) {
+    double maxVelocity = getEnginePower();
+    currentSpeed = Math.min(integrateAcceleration(amount), maxVelocity);
+  }
 
   protected void decrementSpeed(double amount) {
-    currentSpeed = Math.max(integrateDeceleration(amount), 0);
+    currentSpeed = Math.max(integrateDeceleration(amount), MIN_VELOCITY);
   }
 
   private void checkAmountArg(double amount) {
@@ -97,13 +100,11 @@ public abstract class Car implements Movable {
     }
   }
 
-  // TODO fix this method according to lab pm
   public void gas(double amount) {
     checkAmountArg(amount);
     incrementSpeed(amount);
   }
 
-  // TODO fix this method according to lab pm
   public void brake(double amount) {
     checkAmountArg(amount);
     decrementSpeed(amount);

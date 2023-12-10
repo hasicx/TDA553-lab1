@@ -1,3 +1,5 @@
+// Purpose: Playing around with the cars package.
+
 import cars.Car;
 import cars.Saab95;
 import cars.Volvo240;
@@ -16,32 +18,30 @@ public class Driving {
     cars.add(saab);
     cars.add(volvo);
 
-    // for (Car car : cars) {
-    //     car.startEngine();
-    //     System.out.printf("car: %s\n", car.toString());
-    //     System.out.printf("dir: %s\n", car.getDirection());
-    //     System.out.printf("speed: %.3f\n", car.getCurrentSpeed());
-    //     System.out.printf("pos: (%.3f, %.3f)\n", car.getX(), car.getY());
-    //     car.move();
-    //     System.out.printf("pos: (%.3f, %.3f)\n", car.getX(), car.getY());
-    //     car.turnRight();
-    //     car.gas(1);
-    //     car.move();
-    //     System.out.printf("pos: (%.3f, %.3f)\n", car.getX(), car.getY());
-    //     saab.gas(2);
-    // }
-
-    System.out.println(saab.getCurrentSpeed());
-
-    System.out.printf("saab enginepower: %.3f\n", saab.getEnginePower());
-    for (int i = 0; i < 5; i++) {
+    for (Car car : cars) {
+      car.startEngine();
+      System.out.printf("car: %s\n", car.toString());
+      System.out.printf("dir: %s\n", car.getDirection());
+      System.out.printf("speed: %.3f\n", car.getCurrentSpeed());
+      System.out.printf("pos: (%.3f, %.3f)\n", car.getX(), car.getY());
+      car.move();
+      System.out.printf("pos: (%.3f, %.3f)\n", car.getX(), car.getY());
+      car.turnRight();
+      car.gas(1);
+      car.move();
+      System.out.printf("pos: (%.3f, %.3f)\n", car.getX(), car.getY());
       saab.gas(1);
-      System.out.printf("saab speed: %.2f\n", saab.getCurrentSpeed());
     }
 
-    for (int i = 0; i < 5; i++) {
-      saab.brake(1);
-      System.out.printf("saab speed: %.2f\n", saab.getCurrentSpeed());
-    }
+    //   System.out.printf("saab enginepower: %.3f\n", saab.getEnginePower());
+    //   for (int i = 0; i < 5; i++) {
+    //     saab.gas(1);
+    //     System.out.printf("saab speed: %.2f\n", saab.getCurrentSpeed());
+    //   }
+
+    //   for (int i = 0; i < 5; i++) {
+    //     saab.brake(1);
+    //     System.out.printf("saab speed: %.2f\n", saab.getCurrentSpeed());
+    //   }
   }
 }
