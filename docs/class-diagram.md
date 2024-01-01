@@ -7,6 +7,22 @@ classDiagram
       move() void
     }
 
+    class Vehicle {
+    }
+
+    class Truck {
+    }
+
+    class Scania {
+    }
+
+    class Flatbed {
+      int maxAngle
+      int minAngle
+      raise() void
+      lower() void
+    }
+
     class Car {
     }
 
@@ -22,13 +38,22 @@ classDiagram
     class Saab95 {
     }
   }
+
+  <<abstract>> Vehicle
+  <<abstract>> Truck
   <<abstract>> Car
   <<abstract>> TrimmedCar
   <<abstract>> TurboCar
   <<interface>> Movable
-  Car <.. Movable
-  Car <-- TrimmedCar
-  Car <-- TurboCar
-  TrimmedCar <-- Volvo240
-  TurboCar <-- Saab95
+
+  Vehicle <|.. Movable
+  Vehicle <|-- Car
+  Vehicle <|-- Truck
+  Truck <|-- Scania
+  Truck *-- Flatbed
+  Car <|-- TrimmedCar
+  Car <|-- TurboCar
+  TrimmedCar <|-- Volvo240
+  TurboCar <|-- Saab95
+
 ```
