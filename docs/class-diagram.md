@@ -11,14 +11,18 @@ classDiagram
     }
 
     class Truck {
+      getFlatbedAngle() int
+      raiseFlatbed() void
+      lowerFlatbed() void
     }
 
     class Scania {
     }
 
     class Flatbed {
-      int maxAngle
-      int minAngle
+      -int maxAngle
+      -int minAngle
+      -int currentAngle
       raise() void
       lower() void
     }
