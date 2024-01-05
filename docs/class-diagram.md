@@ -1,6 +1,9 @@
 ```mermaid
+
 classDiagram
+
   namespace cars {
+
     class Movable{
       turnLeft() void
       turnRight() void
@@ -23,8 +26,8 @@ classDiagram
       -int maxAngle
       -int minAngle
       -int currentAngle
-      raise() void
-      lower() void
+      +raise() void
+      +lower() void
     }
 
     class Car {
