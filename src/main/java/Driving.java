@@ -1,7 +1,8 @@
 // Purpose: Playing around with the cars package.
 
-import cars.Car;
 import cars.Saab95;
+import cars.Scania;
+import cars.Vehicle;
 import cars.Volvo240;
 import java.util.ArrayList;
 
@@ -10,26 +11,27 @@ public class Driving {
 
     Saab95 saab = new Saab95();
     Volvo240 volvo = new Volvo240();
+    Scania scania = new Scania();
 
     saab.setTurboOn();
 
-    ArrayList<Car> cars = new ArrayList<>(2);
+    ArrayList<Vehicle> vehicles = new ArrayList<>(2);
 
-    cars.add(saab);
-    cars.add(volvo);
+    vehicles.add(saab);
+    vehicles.add(volvo);
+    vehicles.add(scania);
 
-    for (Car car : cars) {
-      car.startEngine();
-      System.out.printf("car: %s\n", car.toString());
-      System.out.printf("dir: %s\n", car.getDirection());
-      System.out.printf("speed: %.3f\n", car.getCurrentSpeed());
-      System.out.printf("pos: (%.3f, %.3f)\n", car.getX(), car.getY());
-      car.move();
-      System.out.printf("pos: (%.3f, %.3f)\n", car.getX(), car.getY());
-      car.turnRight();
-      car.gas(1);
-      car.move();
-      System.out.printf("pos: (%.3f, %.3f)\n", car.getX(), car.getY());
+    for (Vehicle vehicle : vehicles) {
+      System.out.printf("car: %s\n", vehicle.toString());
+      System.out.printf("dir: %s\n", vehicle.getDirection());
+      System.out.printf("speed: %.3f\n", vehicle.getCurrentSpeed());
+      System.out.printf("pos: (%.3f, %.3f)\n", vehicle.getX(), vehicle.getY());
+      vehicle.move();
+      System.out.printf("pos: (%.3f, %.3f)\n", vehicle.getX(), vehicle.getY());
+      vehicle.turnRight();
+      vehicle.gas(1);
+      vehicle.move();
+      System.out.printf("pos: (%.3f, %.3f)\n", vehicle.getX(), vehicle.getY());
       saab.gas(1);
     }
 

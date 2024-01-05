@@ -1,10 +1,33 @@
 ```mermaid
+
 classDiagram
+
   namespace cars {
+
     class Movable{
       turnLeft() void
       turnRight() void
       move() void
+    }
+
+    class Vehicle {
+    }
+
+    class Truck {
+      getFlatbedAngle() int
+      raiseFlatbed() void
+      lowerFlatbed() void
+    }
+
+    class Scania {
+    }
+
+    class Flatbed {
+      -int maxAngle
+      -int minAngle
+      -int currentAngle
+      +raise() void
+      +lower() void
     }
 
     class Car {
@@ -22,13 +45,22 @@ classDiagram
     class Saab95 {
     }
   }
+
+  <<abstract>> Vehicle
+  <<abstract>> Truck
   <<abstract>> Car
   <<abstract>> TrimmedCar
   <<abstract>> TurboCar
   <<interface>> Movable
-  Car <.. Movable
-  Car <-- TrimmedCar
-  Car <-- TurboCar
-  TrimmedCar <-- Volvo240
-  TurboCar <-- Saab95
+
+  Vehicle <|.. Movable
+  Vehicle <|-- Car
+  Vehicle <|-- Truck
+  Truck <|-- Scania
+  Truck *-- Flatbed
+  Car <|-- TrimmedCar
+  Car <|-- TurboCar
+  TrimmedCar <|-- Volvo240
+  TurboCar <|-- Saab95
+
 ```
