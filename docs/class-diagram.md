@@ -13,6 +13,12 @@ classDiagram
     class Vehicle {
     }
 
+    class TransportVehicle {
+    }
+
+    class CarCarrier {
+    }
+
     class Truck {
       getFlatbedAngle() int
       raiseFlatbed() void
@@ -47,6 +53,8 @@ classDiagram
   }
 
   <<abstract>> Vehicle
+  <<abstract>> TransportVehicle
+  <<abstract>> CarCarrier
   <<abstract>> Truck
   <<abstract>> Car
   <<abstract>> TrimmedCar
@@ -54,8 +62,10 @@ classDiagram
   <<interface>> Movable
 
   Vehicle <|.. Movable
+  Vehicle <|-- TransportVehicle
   Vehicle <|-- Car
-  Vehicle <|-- Truck
+  TransportVehicle <|-- Truck
+  TransportVehicle <|-- CarCarrier
   Truck <|-- Scania
   Truck *-- Flatbed
   Car <|-- TrimmedCar
