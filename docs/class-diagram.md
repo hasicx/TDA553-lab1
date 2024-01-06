@@ -14,13 +14,21 @@ classDiagram
     }
 
     class TransportVehicle {
+      #initializePlatform() void*
+      #setPlatformAngleToTilted() void*
+      #restorePlatformAngle() void*
+      +enableTiltedMode() void
+      +disableTiltedMode() void
     }
 
     class CarCarrier {
     }
 
+    class Cottrell {
+    }
+
     class Truck {
-      getFlatbedAngle() int
+      
       raiseFlatbed() void
       lowerFlatbed() void
     }
@@ -28,12 +36,13 @@ classDiagram
     class Scania {
     }
 
-    class Flatbed {
+    class LoadingPlatform {
       -int maxAngle
       -int minAngle
       -int currentAngle
-      +raise() void
-      +lower() void
+      +setAngle(int) void
+      +setToMaxAngle() void
+      +setToMinAngle() void
     }
 
     class Car {
@@ -66,8 +75,9 @@ classDiagram
   Vehicle <|-- Car
   TransportVehicle <|-- Truck
   TransportVehicle <|-- CarCarrier
+  TransportVehicle *.. LoadingPlatform
   Truck <|-- Scania
-  Truck *-- Flatbed
+  CarCarrier <|-- Cottrell
   Car <|-- TrimmedCar
   Car <|-- TurboCar
   TrimmedCar <|-- Volvo240
