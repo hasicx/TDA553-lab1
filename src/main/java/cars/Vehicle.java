@@ -14,8 +14,8 @@ public abstract class Vehicle implements Movable {
   private String modelName; // The car model name
 
   // State of motion
-  private Point2D.Double position;
-  private Direction direction;
+  protected Point2D.Double position;
+  protected Direction direction;
 
   protected double currentSpeed; // The current speed of the car
 

@@ -2,41 +2,42 @@ package cars;
 
 import java.awt.Color;
 
-public abstract class Truck extends Vehicle {
+public abstract class Truck extends TransportVehicle {
   public static final int MIN_FLATBED_ANGLE = 0;
   public static final int MAX_FLATBED_ANGLE = 70;
 
-  private Flatbed flatbed;
+  private Lift lift;
   private int nrDoors;
 
   public Truck(int nrDoors, double enginePower, Color color, String modelName) {
-    super(enginePower, color, modelName);
-    this.nrDoors = nrDoors;
-    this.flatbed = new Flatbed(MIN_FLATBED_ANGLE, MAX_FLATBED_ANGLE);
+    super(nrDoors, enginePower, color, modelName);
   }
 
-  public int getFlatbedAngle() {
-    return flatbed.getCurrentAngle();
+  private Lift createLift() {
+    return new Lift(MIN_FLATBED_ANGLE, MAX_FLATBED_ANGLE);
   }
 
-  public void raiseFlatbed(int degrees) {
-    if (currentSpeed > 0) {
-      throw new IllegalStateException("Cannot raise flatbed during motion.");
-    }
-    flatbed.raise(degrees);
+  @Override
+  protected void initializeLift() {
+    this.lift = createLift();
   }
 
-  public void lowerFlatbed(int degrees) {
-    if (currentSpeed > 0) {
-      throw new IllegalStateException("Cannot lower flatbed during motion.");
-    }
-    flatbed.lower(degrees);
+  @Override
+  protected void setLiftAngleToTilted() {
+    lift.setAngle(lift.getMaxAngle());
   }
 
-  public void gas(double amount) {
-    if (flatbed.getCurrentAngle() > 0) {
-      throw new IllegalStateException("Cannot gas while flatbed is raised.");
-    }
-    super.gas(amount);
+  @Override
+  protected void restoreLiftAngle() {
+    lift.setAngle(lift.getMinAngle());
+  }
+
+  @Override
+  protected boolean platformIsTilted() {
+    return lift.getCurrentAngle() > 0;
+  }
+
+  public void setLiftAngle(int angle) {
+    lift.setAngle(angle);
   }
 }
