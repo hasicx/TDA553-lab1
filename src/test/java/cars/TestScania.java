@@ -8,47 +8,47 @@ import org.junit.jupiter.api.Test;
 public class TestScania {
 
   @Test
-  public void flatbedStartsAtAngle0() {
+  public void liftStartsAtAngle0() {
     Scania scania = new Scania();
     int expectedAngle = 0;
-    assertEquals(expectedAngle, scania.getFlatbedAngle());
+    assertEquals(expectedAngle, scania.getLiftAngle());
   }
 
   @Test
-  public void loweringFlatbedBelowMinAngleRaisesIllegalArgException() {
+  public void loweringLiftBelowMinAngleRaisesIllegalArgException() {
     Scania scania = new Scania();
-    int initialAngle = scania.getFlatbedAngle();
+    int minAngle = scania.getMinLiftAngle();
     scania.brake(1);
-    assertThrows(IllegalArgumentException.class, () -> scania.lowerFlatbed(initialAngle + 1));
+    assertThrows(IllegalArgumentException.class, () -> scania.setLiftAngle(minAngle - 1));
   }
 
   @Test
-  public void raisingFlatbedAboveMaxAngleRaisesIllegalArgException() {
+  public void raisingLiftAboveMaxAngleRaisesIllegalArgException() {
     Scania scania = new Scania();
+    int maxAngle = scania.getMaxLiftAngle();
     scania.brake(1);
-    assertThrows(
-        IllegalArgumentException.class, () -> scania.raiseFlatbed(Scania.MAX_FLATBED_ANGLE + 1));
+    assertThrows(IllegalArgumentException.class, () -> scania.setLiftAngle(maxAngle + 1));
   }
 
   @Test
-  public void loweringFlatbedDuringMotionRaisesIllegalStateException() {
+  public void untiltingLiftDuringMotionRaisesIllegalStateException() {
     Scania scania = new Scania();
     scania.gas(1);
-    assertThrows(IllegalStateException.class, () -> scania.lowerFlatbed(1));
+    assertThrows(IllegalStateException.class, () -> scania.disableTiltedMode());
   }
 
   @Test
-  public void raisingFlatbedDuringMotionRaisesIllegalStateException() {
+  public void tiltingLiftDuringMotionRaisesIllegalStateException() {
     Scania scania = new Scania();
     scania.gas(1);
-    assertThrows(IllegalStateException.class, () -> scania.raiseFlatbed(1));
+    assertThrows(IllegalStateException.class, () -> scania.setLiftAngleToTilted());
   }
 
   @Test
   public void gassingWhileFlatbedIsRaisedRaisesIllegalStateException() {
     Scania scania = new Scania();
     scania.brake(1);
-    scania.raiseFlatbed(1);
+    scania.setLiftAngleToTilted();
     assertThrows(IllegalStateException.class, () -> scania.gas(1));
   }
 }
