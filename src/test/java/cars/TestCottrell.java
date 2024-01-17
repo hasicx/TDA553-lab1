@@ -26,7 +26,6 @@ public class TestCottrell {
     assertEquals(0, cottrell.getNumCarsOnDeck());
   }
 
-  //Tests for CarCarrier/Cottrell
   @Test
   public void loadedVehiclesMoveWithCarrier() {
     Cottrell cottrell = new Cottrell();
