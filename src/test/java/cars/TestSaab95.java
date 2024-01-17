@@ -16,8 +16,8 @@ public class TestSaab95 {
   @Test
   public void newCarStartsAtOrigo() {
     Saab95 saab95 = new Saab95();
-    assertEquals(saab95.getX(), 0.0, Constants.DOUBLE_EQUALS_ALLOWED_DIFF);
-    assertEquals(saab95.getY(), 0.0, Constants.DOUBLE_EQUALS_ALLOWED_DIFF);
+    assertEquals(saab95.getX(), 0.0, Constants.DOUBLE_EQUALITY_TOLERANCE);
+    assertEquals(saab95.getY(), 0.0, Constants.DOUBLE_EQUALITY_TOLERANCE);
   }
 
   @Test
@@ -73,7 +73,7 @@ public class TestSaab95 {
     saab95.gas(gasAmount);
     double expectedY = saab95.getY() + saab95.getCurrentSpeed() * 0.5;
     saab95.move();
-    assertEquals(expectedY, saab95.getY(), Constants.DOUBLE_EQUALS_ALLOWED_DIFF);
+    assertEquals(expectedY, saab95.getY(), Constants.DOUBLE_EQUALITY_TOLERANCE);
   }
 
   // Sanity check 1: gas & break only accept values in [0,1]
@@ -127,7 +127,7 @@ public class TestSaab95 {
   @Test
   public void currentSpeedIsBoundedFromBelowBy0() {
     Saab95 saab95 = new Saab95();
-    assumeTrue(Math.abs(saab95.getCurrentSpeed() - 0.1) <= Constants.DOUBLE_EQUALS_ALLOWED_DIFF);
+    assumeTrue(Math.abs(saab95.getCurrentSpeed() - 0.1) <= Constants.DOUBLE_EQUALITY_TOLERANCE);
     saab95.brake(1);
     assertTrue(saab95.getCurrentSpeed() >= 0.0);
   }
@@ -136,7 +136,7 @@ public class TestSaab95 {
   public void currentSpeedIsBoundedFromAboveByEnginePower() {
     Saab95 saab95 = new Saab95();
 
-    assumeTrue(Math.abs(saab95.getCurrentSpeed() - 0.1) <= Constants.DOUBLE_EQUALS_ALLOWED_DIFF);
+    assumeTrue(Math.abs(saab95.getCurrentSpeed() - 0.1) <= Constants.DOUBLE_EQUALITY_TOLERANCE);
 
     System.out.println(saab95.getCurrentSpeed());
     saab95.gas(1);

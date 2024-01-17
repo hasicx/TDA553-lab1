@@ -4,6 +4,10 @@ classDiagram
 
   namespace cars {
 
+    class Transportable {
+      #setPosition(double x, double y)
+    }
+
     class Movable{
       turnLeft() void
       turnRight() void
@@ -11,23 +15,46 @@ classDiagram
     }
 
     class Vehicle {
+      +move() void
+    }
+
+    class TransportVehicle {
+      #initializeLift() void*
+      #setLiftAngleToTilted() void*
+      #restoreLiftAngle() void*
+      #platformIsTilted() boolean*
+      +enableTiltedMode() void
+      +disableTiltedMode() void
+    }
+
+    class CarCarrier {
+      -Deque~Transportable~ deck
+      -isInProximity(Vehicle) boolean
+      #initializeDeck() void*
+      +move() void
+      +load(Transportable) void
+      +unload() Transportable
+      +getNumObjectsOnDeck() int
+    }
+
+    class Cottrell {
+      #initializeDeck() void
     }
 
     class Truck {
-      getFlatbedAngle() int
-      raiseFlatbed() void
-      lowerFlatbed() void
+      setLiftAngle(int) void
     }
 
     class Scania {
     }
 
-    class Flatbed {
+    class Lift {
       -int maxAngle
       -int minAngle
       -int currentAngle
-      +raise() void
-      +lower() void
+      +setAngle(int) void
+      +setToMaxAngle() void
+      +setToMinAngle() void
     }
 
     class Car {
@@ -47,17 +74,26 @@ classDiagram
   }
 
   <<abstract>> Vehicle
+  <<abstract>> TransportVehicle
+  <<abstract>> CarCarrier
   <<abstract>> Truck
   <<abstract>> Car
   <<abstract>> TrimmedCar
   <<abstract>> TurboCar
   <<interface>> Movable
+  <<interface>> Transportable
 
-  Vehicle <|.. Movable
+  Vehicle ..|> Movable
+  Vehicle <|-- TransportVehicle
   Vehicle <|-- Car
-  Vehicle <|-- Truck
+  TransportVehicle <|-- Truck
+  TransportVehicle <|-- CarCarrier
+  TransportVehicle *.. Lift
   Truck <|-- Scania
-  Truck *-- Flatbed
+  CarCarrier <|-- Cottrell
+  Car <.. Cottrell
+  CarCarrier "1" --> "0..n" Transportable
+  Car ..|> Transportable
   Car <|-- TrimmedCar
   Car <|-- TurboCar
   TrimmedCar <|-- Volvo240

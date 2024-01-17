@@ -12,6 +12,6 @@ public class TestVolvo240 {
   public void speedFactorReturnsProductOfBaseSpeedFactorAndTrimFactor() {
     Volvo240 volvo240 = new Volvo240();
     double expectedSpeedFactor = volvo240.baseSpeedFactor() * TRIMFACTOR;
-    assertEquals(expectedSpeedFactor, volvo240.speedFactor(), Constants.DOUBLE_EQUALS_ALLOWED_DIFF);
+    assertEquals(expectedSpeedFactor, volvo240.speedFactor(), Constants.DOUBLE_EQUALITY_TOLERANCE);
   }
 }

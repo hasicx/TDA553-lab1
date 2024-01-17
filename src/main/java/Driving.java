@@ -1,7 +1,11 @@
 // Purpose: Playing around with the cars package.
 
+import cars.Car;
+import cars.CarCarrier;
+import cars.Cottrell;
 import cars.Saab95;
 import cars.Scania;
+import cars.TransportVehicle;
 import cars.Vehicle;
 import cars.Volvo240;
 import java.util.ArrayList;
@@ -12,6 +16,7 @@ public class Driving {
     Saab95 saab = new Saab95();
     Volvo240 volvo = new Volvo240();
     Scania scania = new Scania();
+    Cottrell cottrell = new Cottrell();
 
     saab.setTurboOn();
 
@@ -20,30 +25,34 @@ public class Driving {
     vehicles.add(saab);
     vehicles.add(volvo);
     vehicles.add(scania);
+    vehicles.add(cottrell);
 
-    for (Vehicle vehicle : vehicles) {
-      System.out.printf("car: %s\n", vehicle.toString());
-      System.out.printf("dir: %s\n", vehicle.getDirection());
-      System.out.printf("speed: %.3f\n", vehicle.getCurrentSpeed());
-      System.out.printf("pos: (%.3f, %.3f)\n", vehicle.getX(), vehicle.getY());
-      vehicle.move();
-      System.out.printf("pos: (%.3f, %.3f)\n", vehicle.getX(), vehicle.getY());
-      vehicle.turnRight();
-      vehicle.gas(1);
-      vehicle.move();
-      System.out.printf("pos: (%.3f, %.3f)\n", vehicle.getX(), vehicle.getY());
-      saab.gas(1);
-    }
+    // Test loading and unloading cars on car carrier
+    CarCarrier carrier = new Cottrell();
+    carrier.brake(1);
+    carrier.enableTiltedMode();
+    carrier.load(volvo);
+    carrier.disableTiltedMode();
 
-    //   System.out.printf("saab enginepower: %.3f\n", saab.getEnginePower());
-    //   for (int i = 0; i < 5; i++) {
-    //     saab.gas(1);
-    //     System.out.printf("saab speed: %.2f\n", saab.getCurrentSpeed());
-    //   }
+    // Check positions of carrier and volvo before moving
+    System.out.println("Carrier position: " + carrier.getX() + ", " + carrier.getY());
+    System.out.println("Volvo position: " + volvo.getX() + ", " + volvo.getY());
 
-    //   for (int i = 0; i < 5; i++) {
-    //     saab.brake(1);
-    //     System.out.printf("saab speed: %.2f\n", saab.getCurrentSpeed());
-    //   }
+    // Move carrier before unloading
+    carrier.gas(1);
+    carrier.move();
+    carrier.brake(1);
+
+    // Check positions after moving before unloading
+    System.out.println("Carrier position: " + carrier.getX() + ", " + carrier.getY());
+    System.out.println("Volvo position: " + volvo.getX() + ", " + volvo.getY());
+
+    carrier.enableTiltedMode();
+    Volvo240 unloadedVolvo = (Volvo240) carrier.unload();
+
+    // Check positions of carrier and volvo after unloading
+    System.out.println("Carrier position: " + carrier.getX() + ", " + carrier.getY());
+    System.out.println("Volvo position: " + volvo.getX() + ", " + volvo.getY());
+
   }
 }
