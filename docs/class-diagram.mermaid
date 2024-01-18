@@ -1,95 +1,103 @@
 classDiagram
 
-    class Transportable {
-      #setPosition(double x, double y)
-    }
+  class Direction {
+    <<enum>>
+    NORTH
+    EAST
+    SOUTH
+    WEST
+  }
 
-    class Movable{
-      turnLeft() void
-      turnRight() void
-      move() void
-    }
+  class Transportable {
+    <<interface>>
+    #setPosition(double x, double y)
+  }
 
-    class Vehicle {
-      +move() void
-    }
+  class Movable{
+    <<interface>>
+    turnLeft() void
+    turnRight() void
+    move() void
+  }
 
-    class TransportVehicle {
-      #initializeLift() void*
-      #setLiftAngleToTilted() void*
-      #restoreLiftAngle() void*
-      #platformIsTilted() boolean*
-      +enableTiltedMode() void
-      +disableTiltedMode() void
-    }
+  class Vehicle{
+    <<abstract>>
+    +move() void
+  }
 
-    class CarCarrier {
-      -Deque~Transportable~ deck
-      -isInProximity(Vehicle) boolean
-      #initializeDeck() void*
-      +move() void
-      +load(Transportable) void
-      +unload() Transportable
-      +getNumObjectsOnDeck() int
-    }
+  class TransportVehicle {
+    <<abstract>>
+    #initializeLift() void*
+    #setLiftAngleToTilted() void*
+    #restoreLiftAngle() void*
+    #platformIsTilted() boolean*
+    +enableTiltedMode() void
+    +disableTiltedMode() void
+  }
 
-    class Cottrell {
-      #initializeDeck() void
-    }
+  class CarCarrier {
+    <<abstract>>
+    -Deque~Transportable~ deck
+    -isInProximity(Vehicle) boolean
+    #initializeDeck() void*
+    +move() void
+    +load(Transportable) void
+    +unload() Transportable
+    +getNumObjectsOnDeck() int
+  }
 
-    class Truck {
-      setLiftAngle(int) void
-    }
+  class Cottrell {
+    #initializeDeck() void
+  }
 
-    class Scania {
-    }
+  class Truck {
+    <<abstract>>
+    setLiftAngle(int) void
+  }
 
-    class Lift {
-      -int maxAngle
-      -int minAngle
-      -int currentAngle
-      +setAngle(int) void
-      +setToMaxAngle() void
-      +setToMinAngle() void
-    }
+  class Scania {
+  }
 
-    class Car {
-    }
+  class Lift {
+    -int maxAngle
+    -int minAngle
+    -int currentAngle
+    +setAngle(int) void
+    +setToMaxAngle() void
+    +setToMinAngle() void
+  }
 
-    class TrimmedCar {
-    }
+  class Car {
+    <<abstract>>
+  }
 
-    class TurboCar {
-    }
+  class TrimmedCar {
+    <<abstract>>
+  }
 
-    class Volvo240 {
-    }
+  class TurboCar {
+    <<abstract>>
+  }
 
-    class Saab95 {
-    }
+  class Volvo240 {
+  }
 
-  <<abstract>> Vehicle
-  <<abstract>> TransportVehicle
-  <<abstract>> CarCarrier
-  <<abstract>> Truck
-  <<abstract>> Car
-  <<abstract>> TrimmedCar
-  <<abstract>> TurboCar
-  <<interface>> Movable
-  <<interface>> Transportable
+  class Saab95 {
+  }
 
-  Vehicle ..|> Movable
-  Vehicle <|-- TransportVehicle
-  Vehicle <|-- Car
-  TransportVehicle <|-- Truck
-  TransportVehicle <|-- CarCarrier
-  TransportVehicle *.. Lift
-  Truck <|-- Scania
-  CarCarrier <|-- Cottrell
-  Car <.. Cottrell
-  CarCarrier "1" --> "0..n" Transportable
-  Car ..|> Transportable
-  Car <|-- TrimmedCar
-  Car <|-- TurboCar
-  TrimmedCar <|-- Volvo240
-  TurboCar <|-- Saab95
+
+Vehicle --> Direction
+Vehicle ..|> Movable
+Vehicle <|-- TransportVehicle
+Vehicle <|-- Car
+TransportVehicle <|-- Truck
+TransportVehicle <|-- CarCarrier
+TransportVehicle *.. Lift
+Truck <|-- Scania
+CarCarrier <|-- Cottrell
+CarCarrier "1" --> "0..n" Transportable
+Car ..|> Transportable
+Car <|-- TrimmedCar
+Car <|-- TurboCar
+TrimmedCar <|-- Volvo240
+TurboCar <|-- Saab95
