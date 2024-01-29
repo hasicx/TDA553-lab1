@@ -22,5 +22,4 @@ public abstract class Car extends Vehicle implements Transportable {
   public void setPosition(double x, double y) {
     this.position.setLocation(x, y);
   }
-
 }

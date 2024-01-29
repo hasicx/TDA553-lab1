@@ -42,5 +42,4 @@ public class Cottrell extends CarCarrier {
   protected boolean platformIsTilted() {
     return lift.getCurrentAngle() < 0;
   }
-
 }
