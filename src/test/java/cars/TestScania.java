@@ -41,14 +41,14 @@ public class TestScania {
   public void tiltingLiftDuringMotionRaisesIllegalStateException() {
     Scania scania = new Scania();
     scania.gas(1);
-    assertThrows(IllegalStateException.class, () -> scania.setLiftAngleToTilted());
+    assertThrows(IllegalStateException.class, () -> scania.enableTiltedMode());
   }
 
   @Test
-  public void gassingWhileFlatbedIsRaisedRaisesIllegalStateException() {
+  public void gassingDuringTiltedModeRaisesIllegalStateException() {
     Scania scania = new Scania();
     scania.brake(1);
-    scania.setLiftAngleToTilted();
+    scania.enableTiltedMode();
     assertThrows(IllegalStateException.class, () -> scania.gas(1));
   }
 }

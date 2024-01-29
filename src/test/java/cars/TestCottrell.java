@@ -41,5 +41,4 @@ public class TestCottrell {
     assertEquals(cottrell.getX(), volvo.getX(), Constants.DOUBLE_EQUALITY_TOLERANCE);
     assertEquals(cottrell.getY(), volvo.getY(), Constants.DOUBLE_EQUALITY_TOLERANCE);
   }
-
 }

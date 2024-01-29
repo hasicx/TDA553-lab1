@@ -6,7 +6,6 @@ public abstract class Truck extends TransportVehicle {
   public static final int MIN_FLATBED_ANGLE = 0;
   public static final int MAX_FLATBED_ANGLE = 70;
 
-  private Lift lift;
   private int nrDoors;
 
   public Truck(int nrDoors, double enginePower, Color color, String modelName) {

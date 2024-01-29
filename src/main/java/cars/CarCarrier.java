@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.Deque;
 
 public abstract class CarCarrier extends TransportVehicle {
-  
+
   private static final double MAX_LOADING_DISTANCE = 1.0;
   private static final double DISPLACEMENT_AFTER_UNLOADING = 1e-1;
   protected Deque<Transportable> deck;
@@ -12,7 +12,7 @@ public abstract class CarCarrier extends TransportVehicle {
   public CarCarrier(int nrDoors, double enginePower, Color color, String modelName) {
     super(nrDoors, enginePower, color, modelName);
     initializeDeck();
-  } 
+  }
 
   protected abstract void initializeDeck();
 
@@ -45,7 +45,7 @@ public abstract class CarCarrier extends TransportVehicle {
   private void setCarPositionOnUnload(Transportable transportable) {
     Direction dir = this.getDirection();
     transportable.setDirection(dir);
-    
+
     switch (dir) {
       case NORTH:
         transportable.setPosition(this.getX(), this.getY() - DISPLACEMENT_AFTER_UNLOADING);
@@ -67,7 +67,7 @@ public abstract class CarCarrier extends TransportVehicle {
       throw new IllegalStateException("Platform must be tilted to unload car.");
     }
     Transportable transportable = deck.removeLast();
-    setCarPositionOnUnload(transportable); 
+    setCarPositionOnUnload(transportable);
     return transportable;
   }
 
@@ -82,5 +82,4 @@ public abstract class CarCarrier extends TransportVehicle {
       transportable.setPosition(this.getX(), this.getY());
     }
   }
-
 }

@@ -3,9 +3,9 @@
 import cars.Car;
 import cars.CarCarrier;
 import cars.Cottrell;
+import cars.RepairShop;
 import cars.Saab95;
 import cars.Scania;
-import cars.TransportVehicle;
 import cars.Vehicle;
 import cars.Volvo240;
 import java.util.ArrayList;
@@ -33,6 +33,7 @@ public class Driving {
     carrier.enableTiltedMode();
     carrier.load(volvo);
     carrier.disableTiltedMode();
+    System.out.println("Carrier angle: " + carrier.getLiftAngle());
 
     // Check positions of carrier and volvo before moving
     System.out.println("Carrier position: " + carrier.getX() + ", " + carrier.getY());
@@ -54,5 +55,18 @@ public class Driving {
     System.out.println("Carrier position: " + carrier.getX() + ", " + carrier.getY());
     System.out.println("Volvo position: " + volvo.getX() + ", " + volvo.getY());
 
+    // Test repairshop
+    RepairShop<Car> rs = new RepairShop<>(5);
+    String orderId = rs.createOrder(unloadedVolvo);
+    System.out.println("Order id: " + orderId);
+    System.out.println("Inventory size: " + rs.getInventorySize());
+    System.out.println("Order exists: " + rs.orderExists(orderId));
+    System.out.println("Completing order...");
+    Car returnedCar = rs.completeOrder(orderId);
+    System.out.println("Inventory size: " + rs.getInventorySize());
+    System.out.println("Order exists: " + rs.orderExists(orderId));
+
+    // Test Trucks
+    System.out.println("Scania lift angle: " + scania.getLiftAngle());
   }
 }

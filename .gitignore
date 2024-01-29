@@ -1,5 +1,11 @@
+bin/
 lib/*
 
 # Gradle
 .gradle
 build/
+
+.vscode/
+
+# Drafting file
+src/main/java/**/Tmp.java

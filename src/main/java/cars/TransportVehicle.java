@@ -14,8 +14,11 @@ public abstract class TransportVehicle extends Vehicle {
   }
 
   protected abstract void initializeLift();
+
   protected abstract void setLiftAngleToTilted();
+
   protected abstract void restoreLiftAngle();
+
   protected abstract boolean platformIsTilted();
 
   protected boolean isInMotion() {
@@ -38,10 +41,6 @@ public abstract class TransportVehicle extends Vehicle {
     restoreLiftAngle();
   }
 
-  public int getPlatformAngle() {
-    return lift.getCurrentAngle();
-  }
-
   public void gas(double amount) {
     if (platformIsTilted()) {
       throw new IllegalStateException("Cannot gas while platform is tilted.");
@@ -49,16 +48,15 @@ public abstract class TransportVehicle extends Vehicle {
     super.gas(amount);
   }
 
-public int getLiftAngle() {
-  return lift.getCurrentAngle();
-}
+  public int getLiftAngle() {
+    return lift.getCurrentAngle();
+  }
 
-public int getMinLiftAngle() {
-  return lift.getMinAngle();
-}
+  public int getMinLiftAngle() {
+    return lift.getMinAngle();
+  }
 
-public int getMaxLiftAngle() {
-  return lift.getMaxAngle();
-}
-
+  public int getMaxLiftAngle() {
+    return lift.getMaxAngle();
+  }
 }
