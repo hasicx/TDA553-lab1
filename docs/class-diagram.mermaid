@@ -20,15 +20,20 @@ classDiagram
     move() void
   }
 
-  class RepairShop {
-    <<T extends Car>>
-    %% No support for generics with two parameters
-    -HashMap~String->T~ orders
-    -getCapacity() int
+  class CarRepairShop {
+    <<generic>>
+    %% Comma-separated type-parameter lists not supported for generics. Use / to separate.
+    -Map~String/T~ orders
+    -int capacity
+    -createMap(int capacity) Map~String/T~
+    -isFull() boolean
+    +CarRepairShop(int capacity)
     +add(T) String
     +return(String) T
+    +getCapacity() int
+    +getInventorySize() int
   }
-  note for RepairShop "Standard notation for parameterized class not supported."
+  note for CarRepairShop "T extends Car"
 
   class Vehicle{
     <<abstract>>
