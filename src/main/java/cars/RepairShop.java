@@ -8,7 +8,6 @@ public class RepairShop<T> {
 
   private final int capacity;
   private Map<String, T> orders;
-  private HashMap<String, T> hashOrders;
 
   public RepairShop(int capacity) {
     this.capacity = capacity;
