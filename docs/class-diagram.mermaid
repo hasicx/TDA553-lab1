@@ -20,20 +20,21 @@ classDiagram
     move() void
   }
 
-  class CarRepairShop {
+  class RepairShop {
     <<generic>>
     %% Comma-separated type-parameter lists not supported for generics. Use / to separate.
     -Map~String/T~ orders
     -int capacity
     -createMap(int capacity) Map~String/T~
     -isFull() boolean
-    +CarRepairShop(int capacity)
-    +add(T) String
-    +return(String) T
+    +RepairShop(int capacity)
+    +createOrder(T) String
+    +completeOrder(String) T
     +getCapacity() int
     +getInventorySize() int
+    +orderExists(String id) boolean
   }
-  note for CarRepairShop "T extends Car"
+  note for RepairShop "T extends Car"
 
   class Vehicle{
     <<abstract>>
@@ -67,7 +68,9 @@ classDiagram
 
   class Truck {
     <<abstract>>
-    setLiftAngle(int) void
+    #setLiftAngleToTilted() void
+    #restoreLiftAngle() void
+    +setLiftAngle(int) void
   }
 
   class Scania {
